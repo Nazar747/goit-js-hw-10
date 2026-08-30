@@ -13,35 +13,33 @@ function handleSubmit(event) {
   const promise = new Promise((resolve, reject) => {
     setTimeout(() => {
       if (state === 'fulfilled') {
-        iziToast.success({
-          icon: '',
-          message: `✅ Fulfilled promise in ${delay}ms`,
-          position: 'topRight',
-          pauseOnHover: false,
-          backgroundColor: '#59A10D',
-          messageColor: '#ffffff',
-        });
-        resolve();
+        resolve(delay);
       } else {
-        iziToast.error({
-          icon: '',
-          message: `❌ Rejected promise in ${delay}ms`,
-          position: 'topRight',
-          pauseOnHover: false,
-          backgroundColor: '#EF4040',
-          messageColor: '#ffffff',
-        });
-        reject();
+        reject(delay);
       }
     }, delay);
   });
 
   promise
-    .then(() => {
-      console.log(`✅ Fulfilled promise in ${delay}ms`);
+    .then(delay => {
+      iziToast.success({
+        icon: '',
+        message: `✅ Fulfilled promise in ${delay}ms`,
+        position: 'topRight',
+        pauseOnHover: false,
+        backgroundColor: '#59A10D',
+        messageColor: '#ffffff',
+      });
     })
-    .catch(() => {
-      console.log(`❌ Rejected promise in ${delay}ms`);
+    .catch(delay => {
+      iziToast.error({
+        icon: '',
+        message: `❌ Rejected promise in ${delay}ms`,
+        position: 'topRight',
+        pauseOnHover: false,
+        backgroundColor: '#EF4040',
+        messageColor: '#ffffff',
+      });
     });
 
   form.reset();

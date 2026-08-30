@@ -4,6 +4,7 @@ import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 
 const start = document.querySelector('[data-start]');
+start.disabled = true;
 const datetimePicker = document.querySelector('#datetime-picker');
 
 const daysElem = document.querySelector('[data-days]');
